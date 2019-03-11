@@ -84,10 +84,10 @@ class Window(QtGui.QMainWindow):
 
         # Create a button then quits the application if pressed
         # uses the close_application when called
-        btn = QtGui.QPushButton("Quit", self)
-        btn.clicked.connect(self.close_application)
-        btn.resize(btn.minimumSizeHint())
-        btn.move(0, 100)
+        self.btn = QtGui.QPushButton("Quit", self)
+        self.btn.clicked.connect(self.close_application)
+        self.btn.resize(self.btn.minimumSizeHint())
+        self.btn.move(0, 100)
 
         # Creates a tool (with an image) which closes the application
         # Uses the close_application when called
@@ -112,35 +112,35 @@ class Window(QtGui.QMainWindow):
         # Create a progress bar with a certain geometery
 
         self.progress = QtGui.QProgressBar(self)
-        self.progress.setGeometry(200, 80, 250, 20)
+        self.progress.setGeometry(200, 200, 300, 30)
 
         # Creates a download button
         # Calls the download function when called
 
         self.btn2 = QtGui.QPushButton("Download", self)
-        self.btn2.move(200, 100)
+        self.btn2.move(200, 250)
         self.btn2.clicked.connect(self.download)
 
         # Set current syle of Window with a labes placed and moved
 
         self.styleChoice = QtGui.QLabel("Windows Vista", self)
-        self.styleChoice.move(50, 270)
+        self.styleChoice.move(80, 45)
 
         # Create a list of possible style choices and append to dropdown menu
 
-        comboBox = QtGui.QComboBox(self)
-        comboBox.addItem("motif")
-        comboBox.addItem("Windows")
-        comboBox.addItem("cde")
-        comboBox.addItem("Plastique")
-        comboBox.addItem("Cleanlooks")
-        comboBox.addItem("windowsvista")
-        comboBox.move(50, 250)
+        self.comboBox = QtGui.QComboBox(self)
+        self.comboBox.addItem("motif")
+        self.comboBox.addItem("Windows")
+        self.comboBox.addItem("cde")
+        self.comboBox.addItem("Plastique")
+        self.comboBox.addItem("Cleanlooks")
+        self.comboBox.addItem("windowsvista")
+        self.comboBox.move(150, 100)
 
         # Create a selection toold for dropdown that links to style_choice
         # When called for that style
 
-        comboBox.activated[str].connect(self.style_choice)
+        self.comboBox.activated[str].connect(self.style_choice)
 
         # Add Calendar- if wanted
 
@@ -217,10 +217,20 @@ class Window(QtGui.QMainWindow):
 
     def enlarge_window(self, state):
         if state == QtCore.Qt.Checked:
-            self.setGeometry(50, 50, 1000, 600)
+            self.setGeometry(50, 50, 650, 350)
+            self.btn.move(10,280)
+            self.btn2.move(250,150)
+            self.progress.setGeometry(250, 100, 400, 30)
+            self.comboBox.move(150, 280)
+            self.styleChoice.move(80, 45)
 
         else:
             self.setGeometry(50, 50, 500, 300)
+            self.btn.move(10,100)
+            self.btn2.move(200, 250)
+            self.progress.setGeometry(200, 200, 300, 30)
+            self.comboBox.move(150, 100)
+            self.styleChoice.move(80, 45)
 
     # Creates a seperate dialog box to confirm choice of closing application
     # If yes is chosen then close the application, if not pass back to the
